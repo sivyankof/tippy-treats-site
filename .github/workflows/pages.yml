@@ -15,7 +15,8 @@ permissions:
 
 concurrency:
   group: pages
-  cancel-in-progress: true
+  # A deploy under way is never cut off: the next one waits.
+  cancel-in-progress: false
 
 jobs:
   deploy:
