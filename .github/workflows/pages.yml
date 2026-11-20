@@ -40,6 +40,10 @@ jobs:
         uses: actions/upload-pages-artifact@fc324d3547104276b827a68afc52ff2a11cc49c9 # v5.0.0
         with:
           path: site
+      # The artifact list of the API can lag behind the upload: the first deploy of the site did
+      # not find the artifact 0.7 s after it was finalized, and passed when run again.
+      - name: Let the artifact list catch up
+        run: sleep 15
       - name: Deploy to GitHub Pages
         id: deploy
         uses: actions/deploy-pages@368f82528645a54fb793d4d04e342629a3f51346 # v5.0.1
